@@ -14,7 +14,7 @@ export default function BookForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title && author) {
-      const book = { id: uuidv4(), title, author };
+      const book = { id: uuidv4(), title, author, isFavorite: false };
 
       dispatch(addBook(book));
       setTitle("");
@@ -29,6 +29,7 @@ export default function BookForm() {
     const randomBookWithId = {
       ...randomBook,
       id: uuidv4(),
+      isFavorite: false,
     };
     dispatch(addBook(randomBookWithId));
   };
