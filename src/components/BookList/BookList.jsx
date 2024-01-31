@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBook, toggleFavorite } from "../../redux/books/actionCreators";
+import { setToggleFavoriteBook, selectBooks, deleteBook } from "../../redux/slices/booksSlice";
 import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
 import { selectTitleFilter, selectAuthorFilter, selectFavoriteFilter } from "../../redux/slices/filterSlice";
 import "./BookList.css";
 
 export default function BookList() {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
+  const books = useSelector(selectBooks);
   const titleBooks = useSelector(selectTitleFilter);
   const authorBooks = useSelector(selectAuthorFilter);
   const favoriteBooks = useSelector(selectFavoriteFilter);
@@ -24,7 +24,7 @@ export default function BookList() {
   };
 
   const handleToggleFavorite = (id) => {
-    dispatch(toggleFavorite(id));
+    dispatch(setToggleFavoriteBook(id));
   };
 
   const highlightMath = (text, filter) => {
