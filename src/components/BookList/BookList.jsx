@@ -27,6 +27,22 @@ export default function BookList() {
     dispatch(toggleFavorite(id));
   };
 
+  const highlightMath = (text, filter) => {
+    if (!filter) return text;
+
+    const regex = new RegExp(`(${filter})`, "gi");
+    return text.split(regex).map((substring, i) => {
+      if (substring.toLowerCase() === filter.toLowerCase()) {
+        return (
+          <span key={i} className="highlight">
+            {substring}
+          </span>
+        );
+      }
+      return substring;
+    });
+  };
+
   return (
     <div className="app-block book-list">
       <h2>Book List</h2>
@@ -38,7 +54,8 @@ export default function BookList() {
             return (
               <li key={book.id}>
                 <div className="book-info">
-                  {++i}. {book.title} by <strong>{book.author}</strong>
+                  {++i}. {highlightMath(book.title, titleBooks)} by{" "}
+                  <strong>{highlightMath(book.author, authorBooks)}</strong>
                 </div>
                 <div className="book-actions">
                   <span onClick={() => handleToggleFavorite(book.id)}>
