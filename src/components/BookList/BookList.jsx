@@ -55,7 +55,7 @@ export default function BookList() {
               <li key={book.id}>
                 <div className="book-info">
                   {++i}. {highlightMath(book.title, titleBooks)} by{" "}
-                  <strong>{highlightMath(book.author, authorBooks)}</strong>
+                  <strong>{highlightMath(book.author, authorBooks)}</strong>({book.source})
                 </div>
                 <div className="book-actions">
                   <span onClick={() => handleToggleFavorite(book.id)}>
